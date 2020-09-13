@@ -24,13 +24,13 @@ public getempleados(){
 }
 
 public GetCategoria(){
-  return this.database.list('categoria/').valueChanges();
+  return this.database.list('categorias/').valueChanges();
 }
 //Metodo publico para consultar los empleados desde la base de datos//
 //filtro Categoria//
-getCategoriaFiltro(filtro :string){
-  this.dataCategoria = this.database.list('/categoria'),
-  data => data.orderByChild('dataCategoria').equalTo('dataCategoria')
+public getCategoriaFiltro(filtro :string){
+  console.log(filtro);
+  return this.database.list('sa_servicios/', data => data.orderByChild('categoria').equalTo(filtro)).valueChanges();
 }
 //filtro Categoria//
 }

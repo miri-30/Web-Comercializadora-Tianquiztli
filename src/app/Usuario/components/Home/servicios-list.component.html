@@ -84,20 +84,24 @@
                                 </div>
                                 <input class="form-control mr-sm-2" type="text" placeholder="Buscar por nombre" aria-label="Buscar" [(ngModel)]="Filter.serv_nombre" />
                             </div>
-                            <select class="form-control col-sm-6" id="tipo_categoria" [(ngModel)]="categorias" name="tipo_categoria" (change)="onSelect($event)">
+                            <form [formGroup]="categoriesForm">
+                                <div class="form-group mt-2">
+                                    <!-- <label for="exampleFormControlSelect1">Example select</label> -->
+                                    <select class="form-control" id="exampleFormControlSelect1" (change)="onSelect()" formControlName="category">
+                                        <option selected hidden disabled>Seleccione una categoría</option>
+                                        <option *ngFor="let categorias of categoriaLocation"value="{{categorias.tipo_categoria}}">{{categorias.tipo_categoria}}</option>
+                                    </select>
+                                </div>
+                            </form>
+                            <!-- <select class="form-control col-sm-6" id="tipo_categoria" [(ngModel)]="categorias" name="tipo_categoria" (change)="onSelect($event)">
                                 <option *ngFor="let categorias of categoriaLocation"value="{{categorias.tipo_categoria}}">{{categorias.tipo_categoria}}</option>
                                    <span name="tipo_categoria" id="tipo_categoria" [(ngModel)]="categorias">{{categorias.tipo_categoria}}</span>
                                 </option>
-                             </select>
+                             </select> -->
                         </div>
                     </div>
                     <div class="card-deck mb-3" style="justify-content: center;">
-                        <div class="text-center" style="justify-content: center; margin: 10px;" *ngFor="
-                          let servic of Servicio
-                          | filterBy: Filter
-                          | paginate: { itemsPerPage: 3, currentPage: p };
-                          let i = index
-                      ">
+                        <div class="text-center" style="justify-content: center; margin: 10px;" *ngFor="let servic of Servicio | filterBy: Filter | paginate: { itemsPerPage: 3, currentPage: p }; let i = index">
                             <div class="card mb-4 box-shadow" style="width: 15rem; margin: auto;">
                                 <img class="card-img-top" src="{{ servic.serv_img }}" style="width: auto; height: 300px;" />
                                 <div class="card-body">

@@ -1,3 +1,4 @@
+import { Validators } from '@angular/forms';
 import { LocationService } from "./../../authentication/locations/location.service";
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../shared/crud.service';
@@ -6,6 +7,7 @@ import { Usuario } from "./../../../Cliente/components/shared/usuario";
 
 import { ToastrService } from 'ngx-toastr';
 import * as firebase from 'firebase';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-servicios-list',
@@ -24,18 +26,24 @@ export class ListaServiciosComponent implements OnInit {
   preLoader: boolean = true;
   userData: any;
   datos = [];
+  categoriesForm: FormGroup;
 
   constructor(
     public crudApi: CrudService,
     public toastr: ToastrService,
     private Services: LocationService,
+    private FormBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.Services.GetCategoria().subscribe((returnedData) => {
-      this.categoriaLocation = returnedData;
-      //cargar información del arreglo  para categoria//
-      })
+    console.log(returnedData);
+    this.categoriaLocation = returnedData;
+    //cargar información del arreglo  para categoria//
+    })
+    this.categoriesForm = this.FormBuilder.group({
+      category: ['', [Validators.required]],
+    })
     let usuariosApp = this.crudApi.datosUsuarios();
     usuariosApp.snapshotChanges().subscribe((res) => {
       this.datos = [];
@@ -47,8 +55,7 @@ export class ListaServiciosComponent implements OnInit {
         }
       });
     });
-
-      this.dataState();
+    this.dataState();
     let s = this.crudApi.GetServiciosList();
     s.snapshotChanges().subscribe(data => {
       this.Servicio = [];
@@ -87,9 +94,14 @@ export class ListaServiciosComponent implements OnInit {
       }
   });
 }
-onSelect(event){
-  let query = "null";
-  if(event.value == "dataCategoria")
-  this.Services.getCategoriaFiltro(event.value);
+onSelect(){
+  const category = this.categoriesForm.value.category;
+  console.log(category);
+  this.Services.getCategoriaFiltro(category).subscribe((returnedData: []) => {
+    console.log(returnedData);
+    this.Servicio = [];
+    this.Servicio = returnedData;
+  })
+  
 }
 }

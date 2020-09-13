@@ -41,7 +41,9 @@ export class CrudService {
     this.serviciosRef = this.db.list("sa_servicios");
     return this.serviciosRef;
   }
-
+  public getFilteredServices(businessId: string) {
+    return this.db.list('sa_servicios/', data => data.orderByChild('businessId').equalTo(businessId)).valueChanges();
+  }
   UpdateServicio(servi: Servicio) {
     this.servicioRef.update({
       serv_nombre: servi.serv_nombre,

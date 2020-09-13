@@ -4,6 +4,7 @@ import { Empleado } from './../shared/empleados';
 import { ToastrService } from 'ngx-toastr';
 import * as firebase from 'firebase';
 import { Empresa } from "./../../../Empresas/components/shared/student";
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class EmpleadosListComponent implements OnInit {
 
   constructor(
     public crudApi: CrudService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private userAuth: AngularFireAuth
   ) { }
 
   ngOnInit(): void {
@@ -39,15 +41,19 @@ export class EmpleadosListComponent implements OnInit {
     });
 
     this.dataState();
-    let s = this.crudApi.GetEmpleadosList();
-    s.snapshotChanges().subscribe(data => {
-      this.Empleado = [];
-      data.forEach(item => {
-        let a = item.payload.toJSON();
-        a['$key'] = item.key;
-        this.Empleado.push(a as Empleado);
-      })
+    const uid = this.userAuth.auth.currentUser.uid;
+    this.crudApi.getFilteredEmployees(uid).subscribe((returnedData: any = []) => {
+      this.Empleado = returnedData;
     })
+    // let s = this.crudApi.GetEmpleadosList();
+    // s.snapshotChanges().subscribe(data => {
+    //   this.Empleado = [];
+    //   data.forEach(item => {
+    //     let a = item.payload.toJSON();
+    //     a['$key'] = item.key;
+    //     this.Empleado.push(a as Empleado);
+    //   })
+    // })
   }
 
   dataState() {

@@ -43,7 +43,9 @@ export class  CrudService {
     return this.sedesRef;
   }
 
- 
+  public getBranchOffices(businessId) {
+    return this.db.list('sa_sedes/', data => data.orderByChild('empUid').equalTo(businessId)).valueChanges();
+  }
   UpdateSede(emplead: Sede) {
     this.sedeRef.update({
       sed_nombre: emplead.sed_nombre,

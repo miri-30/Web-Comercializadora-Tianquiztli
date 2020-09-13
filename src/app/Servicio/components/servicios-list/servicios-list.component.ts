@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../shared/crud.service';
 import { Servicio } from './../shared/servicios';
@@ -21,7 +22,8 @@ export class ServiciosListComponent implements OnInit {
 
   constructor(
     public crudApi: CrudService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private userAuth: AngularFireAuth,
   ) { }
 
   ngOnInit(): void {
@@ -39,15 +41,19 @@ export class ServiciosListComponent implements OnInit {
     });
 
     this.dataState();
-    let s = this.crudApi.GetServiciosList();
-    s.snapshotChanges().subscribe(data => {
-      this.Servicio = [];
-      data.forEach(item => {
-        let a = item.payload.toJSON();
-        a['$key'] = item.key;
-        this.Servicio.push(a as Servicio);
-      })
+    const uid = this.userAuth.auth.currentUser.uid;
+    this.crudApi.getFilteredServices(uid).subscribe((returnedData: any = []) => {
+      this.Servicio = returnedData;
     })
+    // let s = this.crudApi.GetServiciosList();
+    // s.snapshotChanges().subscribe(data => {
+    //   this.Servicio = [];
+    //   data.forEach(item => {
+    //     let a = item.payload.toJSON();
+    //     a['$key'] = item.key;
+    //     this.Servicio.push(a as Servicio);
+    //   })
+    // })
   }
 
   dataState() {

@@ -57,4 +57,7 @@ export class CrudService {
     this.empresas = this.db.list("sa_empresas/");
     return this.empresas;
   }
+  public getFilteredEmployees(businessId) {
+    return this.db.list('sa_empleados/', data => data.orderByChild('businessId').equalTo(businessId)).valueChanges();
+  }
 }

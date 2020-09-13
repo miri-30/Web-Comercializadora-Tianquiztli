@@ -4,6 +4,7 @@ import { Sede } from './../shared/sedes';
 import { ToastrService } from 'ngx-toastr';
 import * as firebase from 'firebase';
 import { Empresa } from "./../../../Empresas/components/shared/student";
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-sedes-list',
@@ -21,7 +22,8 @@ export class SedesListComponent implements OnInit {
 
   constructor(
     public crudApi: CrudService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private userAuth: AngularFireAuth
   ) { 
     let usuariosApp = this.crudApi.datosEmpresas();
     usuariosApp.snapshotChanges().subscribe((res) => {
@@ -38,16 +40,20 @@ export class SedesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataState();
-    let s = this.crudApi.GetSedesList();
-    s.snapshotChanges().subscribe(data => {
-      this.Sede = [];
-      data.forEach(item => {
-          let a = item.payload.toJSON();
-        a['$key'] = item.key;
-        console.log('Sede',a);
-        this.Sede.push(a as Sede);        
-      })
+    const uid = this.userAuth.auth.currentUser.uid;
+    this.crudApi.getBranchOffices(uid).subscribe((returnedData: any = []) => {
+      this.Sede = returnedData;
     })
+    // let s = this.crudApi.GetSedesList();
+    // s.snapshotChanges().subscribe(data => {
+    //   this.Sede = [];
+    //   data.forEach(item => {
+    //       let a = item.payload.toJSON();
+    //     a['$key'] = item.key;
+    //     console.log('Sede',a);
+    //     this.Sede.push(a as Sede);        
+    //   })
+    // })
   }
 
   dataState() {

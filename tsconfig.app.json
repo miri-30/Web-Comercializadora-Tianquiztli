@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": ["jquery"] // add here
+    // "types": ["jquery"] // add here Si esto se descomenta, da error en el proyecto, seguro es por la implementacion de Jquery
     },
   "files": [
     "src/main.ts",

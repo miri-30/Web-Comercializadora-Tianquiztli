@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   selectedImage: any = null;
   isSubmitted: boolean;
   downloadURL: any;
+  authData: any;
   constructor(
     private rotuer: Router,
     private formBuilder: FormBuilder,
@@ -42,7 +43,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
+    this.authData = this.userAuth.auth.currentUser.uid;
     this.Service.GetCategoria().subscribe((returnedData) => {
       this.categoriaLocation = returnedData;
       })
@@ -144,6 +145,7 @@ export class HomeComponent implements OnInit {
                 serv_img: this.downloadURL,
                 fecha: fecha,
                 empUid: user,
+                businessId: this.authData
               })
               .then(() => {
                 // Limpiando el formulario y avisando a los usuairos
