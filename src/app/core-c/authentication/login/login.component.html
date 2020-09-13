@@ -1,0 +1,322 @@
+<!-- Contenedor general -->
+<div class="displayTable">
+  <div class="Navegador">
+    <nav class="navbar navbar-expand-md fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" style="font-size: 18px;">
+                <img src="./../../../../assets/css/LOGO TIANGUIZTLI.png" alt="Nombre" class="w3-circle"
+                    style="height: 50px;width:50px;" /> Comercializadora Tianguiztli
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span>
+                    <i class="fas fa-bars"></i>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" style="align-self: center;">
+                        <a class="nav-link header-menu-tab" (click)="goBack()">Volver</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container"></div>
+    </div>
+</div>
+
+  <div class="container not-blur">
+    <div class="row justify-content-center align-items-center">
+      <section class="container text-center p-5">
+        <section class="container text-center p-3">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+              <div class="card login " style="border: none; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 1);">
+                <div class="card-header">
+                  <h4> INGRESAR</h4>
+                </div>
+                <div class="card-body">
+                  <form class="animate-top" [formGroup]="loginForm">
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+
+                        <div class="input-group mb-3">
+                          <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label>Email</label>
+                          </div>
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-at"></i></span>
+                          </div>
+                          <input type="email" class="form-control" id="email" formControlName="email" required />
+                          <div class="col-lg-12 col-md-12 col-sm-12">
+                            <p *ngIf="email.touched && email.invalid" class="error text-danger"><sup>*</sup>
+                              Por favor ingrese el correo</p>
+                            <p *ngIf="email.errors?.pattern" class="error text-danger"><sup>*</sup>Por favor
+                              ingrese un correo valido</p>
+                          </div>
+                        </div>
+                        <div class="input-group mb-3">
+                          <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label>Contraseña</label>
+                          </div>
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+                          </div>
+                          <input type="password" class="form-control" id="password" formControlName="password"
+                            required />
+                          <div class="col-lg-12 col-md-12 col-sm-12">
+                            <p *ngIf="password.touched && password.invalid" class="error text-danger"><sup>*</sup>Por
+                              favor ingrese una contraseña</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <button class="btn btn-success btn-lg" [disabled]="loginForm.invalid"
+                    (click)="loginUser()">Iniciar sesión</button>
+                  <br>
+                  <div>
+                    <p>Ingresar con: </p>
+                    <button type="button" class="btn btn-danger btn-lg" (click)="loginGoogle()"><i
+                        class="fab fa-google"></i>
+                      Google</button>
+                  </div>
+                </div>
+                <div class="card-footer text-muted" style="
+          color: black;">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h6 style="
+              color: black;">Registrate como</h6>
+                    <a href="" data-toggle="modal" class="alert-link" routerLink="/registroPrinE" style="
+              color: black;"> Empresa </a>
+                    o
+                    <a href="" data-toggle="modal" class="alert-link" routerLink="/registroPrinU" style="
+              color: black;"> Usuario </a>
+                  </div>
+                  <hr style="border-top: 1px solid rgba(0,0,0,0);">
+                  <div class="col-lg-12 col-md-12 col-sm-12 text-right">
+                    <a href="" data-toggle="modal" class="alert-link" (click)="showPasswordModal(passwordModal)" style="
+              color: black;">Olvidaste
+                      tu contraseña?</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+  </div>
+      
+        <div>
+          <footer class="footer pt-4 pt-md-5 border-top">
+            <div class="row" style="margin-right: 0; margin-left: 0;">
+              <div class="col-12 col-md">
+                <small class="d-block mb-3 text-muted footer-link">© 2020 Geometric Dimentional || Derechos
+                  reservados.</small>
+              </div>
+              <div class="col-6 col-md">
+                <h5>Informacion</h5>
+                <ul class="list-unstyled text-small">
+                  <li>
+                    <a class="text-muted footer-link" href="" data-toggle="modal" data-target="#conocenos">Conocenos</a>
+                  </li>
+                  <li>
+                    <a class="text-muted footer-link" href="" data-toggle="modal" data-target="#ubicacion">Ubicacion</a>
+                  </li>
+                  <li>
+                    <a class="text-muted footer-link" href="" data-toggle="modal"
+                      data-target="#exampleModalCenter">Terminos
+                      y condiciones</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </footer>
+        </div>
+    </div>
+
+    <!-- CONOCENOS -->
+    <div class="modal fade bd-example-modal-lg" id="conocenos" tabindex="-1" role="dialog"
+      aria-labelledby="conocenosTitle" aria-hidden="true">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content modal-lg">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Conocenos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="height: 500px; width: 100%; overflow-y: auto;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+            Mauris
+            nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+            posuere,
+            varius odio quis, varius quam. Cras lacinia
+            sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+            justo.
+            Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+            ultrices
+            tincidunt. Morbi placerat ornare nibh
+            in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+            faucibus,
+            non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+            sodales
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- UBICACION -->
+    <div class="modal fade bd-example-modal-lg" id="ubicacion" tabindex="-1" role="dialog"
+      aria-labelledby="ubicacionTitle" aria-hidden="true">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content modal-lg">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Ubicacion</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="height: 500px; width: 100%; overflow-y: auto;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+            Mauris
+            nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+            posuere,
+            varius odio quis, varius quam. Cras lacinia
+            sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+            justo.
+            Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+            ultrices
+            tincidunt. Morbi placerat ornare nibh
+            in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+            faucibus,
+            non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+            sodales
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- TERMINOS Y CONDICIONES -->
+    <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content modal-lg">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Terminos y condiciones</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="height: 500px; width: 100%; overflow-y: auto;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+            Mauris
+            nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+            posuere,
+            varius odio quis, varius quam. Cras lacinia
+            sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+            justo.
+            Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+            ultrices
+            tincidunt. Morbi placerat ornare nibh
+            in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+            faucibus,
+            non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+            sodales
+            ipsum suscipit, facilisis accumsan
+            leo efficitur. Etiam vestibulum maximus sollicitudin. Phasellus pulvinar diam non enim tempus
+            efficitur
+            a id tortor. Aliquam vel consectetur tortor. Praesent fringilla gravida lacus in faucibus.
+            Vestibulum a
+            velit volutpat, vehicula mauris at,
+            scelerisque purus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+            Mauris
+            nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+            posuere,
+            varius odio quis, varius quam. Cras lacinia
+            sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+            justo.
+            Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+            ultrices
+            tincidunt. Morbi placerat ornare nibh
+            in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+            faucibus,
+            non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+            sodales
+            ipsum suscipit, facilisis accumsan
+            leo efficitur. Etiam vestibulum maximus sollicitudin. Phasellus pulvinar diam non enim tempus
+            efficitur
+            a id tortor. Aliquam vel consectetur tortor. Praesent fringilla gravida lacus in faucibus.
+            Vestibulum a
+            velit volutpat, vehicula mauris at,
+            scelerisque purus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+            Mauris
+            nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+            posuere,
+            varius odio quis, varius quam. Cras lacinia
+            sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+            justo.
+            Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+            ultrices
+            tincidunt. Morbi placerat ornare nibh
+            in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+            faucibus,
+            non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+            sodales
+            ipsum suscipit, facilisis accumsan
+            leo efficitur. Etiam vestibulum maximus sollicitudin. Phasellus pulvinar diam non enim tempus
+            efficitur
+            a id tortor. Aliquam vel consectetur tortor. Praesent fringilla gravida lacus in faucibus.
+            Vestibulum a
+            velit volutpat, vehicula mauris at,
+            scelerisque purus.
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Contenedor general -->
+
+    <!-- Modals -->
+    <!-- <ng-template #loginModal>
+      <div class="modal-body">
+        <h2 class="text-center text-dark mt-4">{{modalData.modalTitle}}</h2>
+        <img class="registerIcon img-fluid" alt="Responsive image" src="{{modalData.modalIcon}}">
+        <p class="text-center mt-3">{{modalData.modalDescription}}</p>
+        <button class="btn btn-block btn-lg btn-danger text-center  mt-2 mb-2"
+          (click)="goToDashboard()">Aceptar</button>
+      </div>
+    </ng-template> -->
+    
+    <ng-template #passwordModal>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left"></h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalReference.hide()"><span
+            aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <img class="img-fluid" src="{{modalData.modalIcon}}" alt="Responsive image">
+        <h2 class="text-center ProductSans text-dark mt-4">{{modalData.modalTitle}}</h2>
+        <p class="text-center ProductSans mt-3">{{modalData.modalDescription}}</p>
+        <form class="ProductSans" [formGroup]="passwordForm">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Correo electrónico</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              placeholder="someone@example.com" formControlName="userEmail">
+            <small id="emailHelp" class="form-text text-muted">Nunca mostraremos tu dirección de correo a nadie
+              mas.</small>
+          </div>
+        </form>
+        <button class="btn btn-block btn-lg btn-outline-danger text-center ProductSans  mt-2 mb-2"
+          (click)="recoverPassword()" [disabled]="passwordForm.invalid">Enviar enlace</button>
+      </div>
+    </ng-template>
+    <!-- Modals -->

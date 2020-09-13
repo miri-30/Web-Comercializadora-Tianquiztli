@@ -1,0 +1,128 @@
+<div>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand d-flex align-items-center">
+            <strong class="attl">AppSA</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link header-menu-tab" routerLink="/view-servicios">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link header-menu-tab" routerLink="/chatRoom">Chat</a>
+                </li>
+                <!-- <li class="nav-item">
+                <a class="nav-link header-menu-tab">Cerrar sesión</a>
+            </li> -->
+                <li class="nav-item dropdown" ng-controller='emplController'>
+                    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">
+                        <img alt="user" class='w3-circle' style='height:25px'></a>
+                    <div class="dropdown-menu dropdown-menu-right" ng-controller='emplController'>
+                        <a href="#" class="dropdown-item" onclick="w3.show('#modalEmpl')"><i class='fa fa-edit'></i>
+                            Perfil</a>
+                        <div class="dropdown-divider"></div>
+                        <a ng-click='userLogout()' class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Cerrar
+                            Sesion</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mb-3" style="
+        align-self: center; margin: 0px;
+        padding: 0px;">
+            <section class="text-center">
+                <div class="" style="justify-content: center;">
+                    <div class=" text-center" style="justify-content: center; margin: 10px;"
+                        *ngFor="let servicio of servicios">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="{{servicio.serv_imag}}" style="width: auto; height: 300px;">
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-8 mb-3" style="
+        margin: 0px;
+        padding: 0px; align-self: center;
+    ">
+            <section class="text-center p-1">
+                <div class="" style="justify-content: center;">
+                    <div class=" text-center" style="justify-content: center; margin: 10px;"
+                        *ngFor="let servicio of servicios">
+                        <div class="card mb-4 box-shadow border-0">
+                            <div class="card-body">
+                                <!-- <h5 class="card-title pricing-card-title text-left">Nombre
+                                </h5> -->
+                                <div style="font-size: 35px;">{{servicio.serv_nombre}}</div>
+                                <hr>
+                                <h5 class="card-title pricing-card-title text-left">Descripcion
+                                </h5>
+                                <div>
+                                    {{servicio.serv_descripcion}}
+                                </div>
+
+                                <div>{{servicio.serv_descripcion}}</div>
+
+                                <h5 class="card-title pricing-card-title text-left">Categoria
+                                </h5>
+
+                                <div>{{servicio.serv_categoria}}</div>
+
+                                <h5 class="card-title pricing-card-title text-left">Empleado asignado
+                                </h5>
+
+                                <div>{{servicio.empl_nombre}}</div>
+
+                                <hr>
+                                <!-- <h5 class="card-title pricing-card-title text-left">Costo
+                                </h5> -->
+
+                                <div style="font-size: 20px;">${{servicio.serv_costo}}</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <button class="float-left btn btn-lg btn-block btn-outline-secondary" (click)="goBack()">Volver</button>
+        </div>
+        <div class="col-md-6 mb-3">
+            <button class="float-right btn btn-lg btn-block btn-outline-success">Solicitar</button>
+        </div>
+    </div>
+</div>
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top ">
+    <div class="row" style="margin-right: 0; margin-left: 0;">
+      <div class="col-12 col-md ">
+        <small class="d-block mb-3 text-muted ">© 2020 Geometric Dimentional || Derechos
+          reservados.</small>
+      </div>
+      <div class="col-6 col-md ">
+        <h5>Informacion</h5>
+        <ul class="list-unstyled text-small ">
+          <li><a class="text-muted " href="# ">Conocenos</a></li>
+          <li><a class="text-muted " href="# ">Ubicacion</a></li>
+          <li><a class="text-muted " href="# ">Terminos y condiciones</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,14 @@
+body { margin:0; padding:0; }
+ 
+#mapContainer {
+    width:100%; 
+    height: 550px;
+    top: 0;
+    bottom: 0;
+    overflow: visible;
+}
+.registerIcon{
+    width: 50%;
+    margin: auto;
+    display: block;
+}

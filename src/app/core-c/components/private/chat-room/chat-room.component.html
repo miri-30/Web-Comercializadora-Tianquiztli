@@ -1,0 +1,443 @@
+<div>
+    <div class="Navegador">
+        <nav class="navbar navbar-expand-md fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">AppSA</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span>
+                        <i class="fas fa-bars"></i>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item item-serv">
+                            <a class="nav-link header-menu-tab" routerLink="/inicio">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link header-menu-tab" routerLink="/chatRoom">Chat</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img alt="Nombre" class="w3-circle" style="height: 25px;" /></a>
+
+                            <div class="dropdown-menu dropdown-menu-right ">
+                                <div class="dropdown-header noti-title">
+                                    <h6 class="text-overflow m-0">Bienvenid@!</h6>
+                                </div>
+                                <a routerLinkActive="active" [routerLink]="['/user-profile']"
+                                    class="dropdown-item item-serv"><i
+                                        class="ni ni-single-02"></i><span>Perfil</span></a>
+                                <a routerLinkActive="active" [routerLink]="['/settings']"
+                                    class="dropdown-item item-serv"><i
+                                        class="ni ni-settings-gear-65"></i><span>Opciones</span></a>
+                                <a routerLinkActive="active" [routerLink]="['/suport']"
+                                    class="dropdown-item item-serv"><i
+                                        class="ni ni-support-16"></i><span>Soporte</span></a>
+                                <div class="dropdown-divider"></div>
+                                <a href="" class="dropdown-item item-serv" (click)="SesionFin()"><i
+                                        class="ni ni-user-run"></i><span>Cerrar Sesion</span></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container"></div>
+        </div>
+    </div>
+    <!-- Barra superior -->
+    <!-- Contenedor general -->
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-10 col-sm-9 col-md-6 col-lg-7 col-xl-3">
+                <div class="chatSelector shadow-sm">
+                    <h1 class="m-0 p-0 ml-2 mt-3">Nuevo chat</h1>
+                    <p class="m-0 p-0 ml-2 mt-1">Escoger a alguien para chatear de tu lista de contactos</p>
+                    <a class="btn btn-danger btn-lg btn-block text-center text-white"
+                        (click)="showContactModal(contactModal)">Escoger un nuevo contacto</a>
+
+                        <div class="contactList">
+                            <div class="card shadow-sm rounded mb-2" *ngFor="let contact of contactList"
+                                (click)="selectContact(contact)">
+                                <h3 class="m-0 p-0 mt-2 ml-2">{{contact.name}}</h3>
+                                <h5 class="m-0 p-0 ml-2 mb-2">Última conexión: <b
+                                        class="redFont">{{contact.lastSession | date: 'medium'}}</b></h5>
+                            </div>
+                        </div>
+                </div>
+
+                
+                <div class="chatsContainer">
+                    <mat-accordion>
+                        <mat-expansion-panel class="redBackground text-white mb-2" (opened)="panelOpenState = true"
+                            (closed)="panelOpenState = false" *ngFor="let chat of chatsList"
+                            (click)="showDetails(chat)">
+                            <mat-expansion-panel-header class="chatCard">
+                                <mat-panel-title class="text-white">
+                                    <div class="container-fluid m-0 p-0">
+                                        <h2 class="m-0 p-0 mt-2"
+                                            *ngIf="chat[0].contactName == this.userData.displayName">{{chat[0].myName}}
+                                        </h2>
+                                        <h2 class="m-0 p-0 mt-2"
+                                            *ngIf="chat[0].contactName != this.userData.displayName">
+                                            {{chat[0].contactName}}</h2>
+                                        <h5 class="m-0 p-0 mb-2">Última conversación: <b
+                                                class="text-white">{{chat[0].timeStamp | date: 'medium'}}</b></h5>
+                                    </div>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <a class="mt-2 btn redFont bg-white" (click)="showDeleteModal(deleteModal, chat)">Eliminar
+                                este chat </a>
+                            <ng-template #deleteModal>
+                                <div class="modal-header">
+                                    <h4 class="modal-title pull-left"></h4>
+                                    <button type="button" class="close pull-right" aria-label="Close"
+                                        (click)="modalReference.hide()"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img class="registerIcon mt-5" src="{{modalData.modalIcon}}" alt="Logo">
+                                    <h2 class="text-center text-dark mt-4">{{modalData.modalTitle}}</h2>
+                                    <p class="text-center mt-3">{{modalData.modalDescription}}</p>
+                                    <button class="btn btn-block btn-lg redBackground text-center text-white mt-2 mb-2"
+                                        (click)="deleteChat(chat)">Aceptar</button>
+                                </div>
+                            </ng-template>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <div class="card shadow-sm rounded mb-2 redBackground text-white" *ngFor="let chat of chatsList">
+                    <h2 class="m-0 p-0 mt-2 ml-2">{{chat.contactName}}</h2>
+                    <h5 class="m-0 p-0 ml-2 mb-2">Última conversación: <b class="text-white">{{chat.timeStamp | date: 'medium'}}</b></h5>
+                </div> 
+                </div>
+            </div>
+            <div class="col-10 col-sm-9 col-md-6 col-lg-7 col-xl-9">
+                <div class="talkArea">
+                    <div class="mt-3 messageContainer" *ngFor="let message of messageList"
+                        [ngClass]="{'myMessage' : message.senderId === this.userData.uid, 'hisMessage' : message.senderId != this.userData.uid}">
+                        <p class="m-0 p-0 pt-2 pl-2 pr-2">{{message.messageBody}}</p>
+                        <h5 class="m-0 p-0 pb-2 pl-2 pr-2">{{message.timeStamp | date: 'shortTime'}}</h5>
+                    </div>
+                </div>
+                <div class="writeArea">
+                    <form [formGroup]="chatForm">
+                        <div class="form-group actionArea">
+                            <textarea class="form-control customInput" id="exampleFormControlTextarea1" rows="2"
+                                formControlName="message"></textarea>
+                            <button class="btn sendButton" [disabled]="chatForm.invalid"
+                                (click)="sendMessage()">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <section class="container text-center p-1">
+<div class="card grey lighten-3 chat-room">
+        <div class="card-body">
+      
+          <div class="row px-lg-2 px-2">
+      
+            <div class="col-md-6 col-xl-4 px-0">
+      
+              <h6 class="font-weight-bold mb-3 text-center text-lg-left">Member</h6>
+              <div class="white z-depth-1 px-3 pt-3 pb-0">
+                <ul class="list-unstyled friend-list">
+                  <li class="active grey lighten-3 p-2">
+                    <a href="#" class="d-flex justify-content-between">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
+                      <div class="text-small">
+                        <strong>John Doe</strong>
+                        <p class="last-message text-muted">Hello, Are you there?</p>
+                      </div>
+                      <div class="chat-footer">
+                        <p class="text-smaller text-muted mb-0">Just now</p>
+                        <span class="badge badge-danger float-right">1</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="p-2">
+                    <a href="#" class="d-flex justify-content-between">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
+                      <div class="text-small">
+                        <strong>Brad Pitt</strong>
+                        <p class="last-message text-muted">Lorem ipsum dolor sit.</p>
+                      </div>
+                      <div class="chat-footer">
+                        <p class="text-smaller text-muted mb-0">5 min ago</p>
+                        <span class="text-muted float-right"><i class="fas fa-check" aria-hidden="true"></i></span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+      
+            </div>
+            <div class="col-md-6 col-xl-8 pl-md-3 px-lg-auto px-0">
+      
+              <div class="chat-message">
+      
+                <ul class="list-unstyled chat">
+                  <li class="d-flex justify-content-between mb-4">
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
+                    <div class="chat-body white p-3 ml-2 z-depth-1">
+                      <div class="header">
+                        <strong class="primary-font">Brad Pitt</strong>
+                        <small class="pull-right text-muted"><i class="far fa-clock"></i> 12 mins ago</small>
+                      </div>
+                      <hr class="w-100">
+                      <p class="mb-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="d-flex justify-content-between mb-4">
+                    <div class="chat-body white p-3 z-depth-1">
+                      <div class="header">
+                        <strong class="primary-font">Lara Croft</strong>
+                        <small class="pull-right text-muted"><i class="far fa-clock"></i> 13 mins ago</small>
+                      </div>
+                      <hr class="w-100">
+                      <p class="mb-0">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                        laudantium.
+                      </p>
+                    </div>
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="avatar" class="avatar rounded-circle mr-0 ml-3 z-depth-1">
+                  </li>
+                  <li class="d-flex justify-content-between mb-4 pb-3">
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
+                    <div class="chat-body white p-3 ml-2 z-depth-1">
+                      <div class="header">
+                        <strong class="primary-font">Brad Pitt</strong>
+                        <small class="pull-right text-muted"><i class="far fa-clock"></i> 12 mins ago</small>
+                      </div>
+                      <hr class="w-100">
+                      <p class="mb-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="white">
+                    <div class="form-group basic-textarea">
+                      <textarea class="form-control pl-2 my-0" id="exampleFormControlTextarea2" rows="3" placeholder="Type your message here..."></textarea>
+                    </div>
+                  </li>
+                  <button type="button" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Send</button>
+                </ul>
+      
+              </div>
+      
+            </div>
+      
+          </div>
+      
+        </div>
+      </div>
+    </section> -->
+    
+
+    <div>
+        <footer class="footer pt-4 pt-md-5 border-top">
+            <div class="row" style="margin-right: 0; margin-left: 0;">
+                <div class="col-12 col-md">
+                    <small class="d-block mb-3 text-muted footer-link">© 2020 Geometric Dimentional || Derechos
+                        reservados.</small>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Informacion</h5>
+                    <ul class="list-unstyled text-small">
+                        <li>
+                            <a class="text-muted footer-link" href="" data-toggle="modal"
+                                data-target="#conocenos">Conocenos</a>
+                        </li>
+                        <li>
+                            <a class="text-muted footer-link" href="" data-toggle="modal"
+                                data-target="#ubicacion">Ubicacion</a>
+                        </li>
+                        <li>
+                            <a class="text-muted footer-link" href="" data-toggle="modal"
+                                data-target="#exampleModalCenter">Terminos
+                                y condiciones</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</div>
+<!-- Contenedor general -->
+<!-- Modals -->
+<ng-template #contactModal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left"></h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalReference.hide()"><span
+                aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <img class="chatIcon mt-2" src="../../../../../assets/ilustrations//undraw_people_search_wctu.svg" alt="Logo">
+        <h2 class="text-center text-dark mt-4">Nuevo chat</h2>
+        <p class="text-center mt-3">Escoje una persona de la lista de contactos para iniciar un nuevo chat.</p>
+        <div class="contactList">
+            <div class="card shadow-sm rounded mb-2" *ngFor="let contact of contactList"
+                (click)="selectContact(contact)">
+                <h3 class="m-0 p-0 mt-2 ml-2">{{contact.name}}</h3>
+                <h5 class="m-0 p-0 ml-2 mb-2">Última conexión: <b
+                        class="redFont">{{contact.lastSession | date: 'medium'}}</b></h5>
+            </div>
+        </div>
+        <button class="btn btn-block btn-lg redBackground text-center text-white mt-2 mb-2">Aceptar</button>
+    </div>
+</ng-template>
+<!-- Modals -->
+
+
+<!-- CONOCENOS -->
+<div class="modal fade bd-example-modal-lg" id="conocenos" tabindex="-1" role="dialog" aria-labelledby="conocenosTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Conocenos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 500px; width: 100%; overflow-y: auto;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+                Mauris
+                nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+                posuere,
+                varius odio quis, varius quam. Cras lacinia
+                sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+                justo.
+                Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+                ultrices
+                tincidunt. Morbi placerat ornare nibh
+                in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+                faucibus,
+                non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+                sodales
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- UBICACION -->
+<div class="modal fade bd-example-modal-lg" id="ubicacion" tabindex="-1" role="dialog" aria-labelledby="ubicacionTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ubicacion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 500px; width: 100%; overflow-y: auto;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+                Mauris
+                nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+                posuere,
+                varius odio quis, varius quam. Cras lacinia
+                sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+                justo.
+                Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+                ultrices
+                tincidunt. Morbi placerat ornare nibh
+                in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+                faucibus,
+                non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+                sodales
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- TERMINOS Y CONDICIONES -->
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Terminos y condiciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 500px; width: 100%; overflow-y: auto;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+                Mauris
+                nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+                posuere,
+                varius odio quis, varius quam. Cras lacinia
+                sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+                justo.
+                Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+                ultrices
+                tincidunt. Morbi placerat ornare nibh
+                in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+                faucibus,
+                non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+                sodales
+                ipsum suscipit, facilisis accumsan
+                leo efficitur. Etiam vestibulum maximus sollicitudin. Phasellus pulvinar diam non enim tempus
+                efficitur
+                a id tortor. Aliquam vel consectetur tortor. Praesent fringilla gravida lacus in faucibus.
+                Vestibulum a
+                velit volutpat, vehicula mauris at,
+                scelerisque purus.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+                Mauris
+                nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+                posuere,
+                varius odio quis, varius quam. Cras lacinia
+                sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+                justo.
+                Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+                ultrices
+                tincidunt. Morbi placerat ornare nibh
+                in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+                faucibus,
+                non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+                sodales
+                ipsum suscipit, facilisis accumsan
+                leo efficitur. Etiam vestibulum maximus sollicitudin. Phasellus pulvinar diam non enim tempus
+                efficitur
+                a id tortor. Aliquam vel consectetur tortor. Praesent fringilla gravida lacus in faucibus.
+                Vestibulum a
+                velit volutpat, vehicula mauris at,
+                scelerisque purus.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+                Mauris
+                nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+                posuere,
+                varius odio quis, varius quam. Cras lacinia
+                sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+                justo.
+                Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+                ultrices
+                tincidunt. Morbi placerat ornare nibh
+                in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+                faucibus,
+                non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+                sodales
+                ipsum suscipit, facilisis accumsan
+                leo efficitur. Etiam vestibulum maximus sollicitudin. Phasellus pulvinar diam non enim tempus
+                efficitur
+                a id tortor. Aliquam vel consectetur tortor. Praesent fringilla gravida lacus in faucibus.
+                Vestibulum a
+                velit volutpat, vehicula mauris at,
+                scelerisque purus.
+            </div>
+        </div>
+    </div>
+</div>

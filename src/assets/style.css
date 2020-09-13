@@ -1,0 +1,12 @@
+#mapContainer {
+    width: 10%;
+    height: 10%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+.registerIcon{
+    width: 50%;
+    margin: auto;
+    display: block;
+}

@@ -1,0 +1,119 @@
+<div>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand d-flex align-items-center">
+        <strong class="attl">AppSA</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link header-menu-tab" routerLink="/inicioAdm">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link header-menu-tab" routerLink="/view-usuarios">Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link header-menu-tab" routerLink="/view-empresas">Empresas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link header-menu-tab" (click)="SesionFin()">Cerrar Sesion</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link header-menu-tab" routerLink="/chatRoom">Chat</a>
+          </li>
+          <li class="nav-item dropdown" ng-controller='emplController'>
+            <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">
+              <img alt="user" class='w3-circle' style='height:25px'></a>
+            <div class="dropdown-menu dropdown-menu-right" ng-controller='emplController'>
+              <a href="#" class="dropdown-item" onclick="w3.show('#modalEmpl')"><i class='fa fa-edit'></i>
+                Perfil</a>
+              <div class="dropdown-divider"></div>
+              <a ng-click='userLogout()' class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Cerrar
+                Sesion</a>
+            </div> 
+          </li>-->
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <!-- <div class="container">
+    <section class="container text-center p-1">
+      <div class="row p-4">
+        <div class="form-group col-md-12 mb-3 " id="inputGroup-sizing-lg">
+          <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-lg"> Buscar</span>
+            </div>
+            <input class="form-control mr-sm-2" type="text" placeholder="Buscar por nombre" aria-label="Buscar"
+              [(ngModel)]="Filter.serv_nombre">
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="pricing-header mx-auto">
+    <div class="no-data text-center" *ngIf="preLoader">
+      <div class="spinner-grow" style="width: 5rem; height: 5rem;" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow" style="width: 5rem; height: 5rem;" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow" style="width: 5rem; height: 5rem;" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow" style="width: 5rem; height: 5rem;" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow" style="width: 5rem; height: 5rem;" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <div class="no-data text-center" *ngIf="noData">
+      <img src="assets/users-group.svg" class="nodata-msg" alt="No student">
+      <p class="nodata-msg">No se encuentran usuarios registrados!</p>
+      <a routerLink="/registroServ" class="btn btn-success">
+        <i class="fas fa-plus custom-fa-plus"></i>
+        Agregar Servicio
+      </a>
+    </div>
+  </div> -->
+
+  <div class="container">
+    <section class="text-center">
+      <div class="card-deck mb-3" style="justify-content: center;">
+        <div class=" text-center" style="justify-content: center; margin: 10px;">
+          <div class="card mb-4 box-shadow" style="width: 40rem; margin: auto;">
+            <div class="card-body" style="font-size: 50px;">
+              Bienvenido Administrador 
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="pt-4 my-md-5 pt-md-5 border-top ">
+    <div class="row" style="margin-right: 0; margin-left: 0;">
+      <div class="col-12 col-md ">
+        <small class="d-block mb-3 text-muted ">© 2020 Geometric Dimentional || Derechos
+          reservados.</small>
+      </div>
+      <div class="col-6 col-md ">
+        <h5>Informacion</h5>
+        <ul class="list-unstyled text-small ">
+          <li><a class="text-muted " href="# ">Conocenos</a></li>
+          <li><a class="text-muted " href="# ">Ubicacion</a></li>
+          <li><a class="text-muted " href="# ">Terminos y condiciones</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+</div>

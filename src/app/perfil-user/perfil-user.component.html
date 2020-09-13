@@ -1,0 +1,245 @@
+<div>
+    <div class="Navegador">
+        <nav class="navbar navbar-expand-md fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#" style="font-size: 18px;">
+                    <img src="./../../../../assets/css/LOGO TIANGUIZTLI.png" alt="Nombre" class="w3-circle" style="height: 50px;width:50px;" /> Comercializadora Tianguiztli
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span>
+                    <i class="fas fa-bars"></i>
+                </span>
+            </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item item-serv" style="align-self: center;">
+                            <a class="nav-link header-menu-tab" routerLink="/inicio">Inicio</a>
+                        </li>
+                        <li class="nav-item dropdown" style="align-self: center;" *ngFor="let dato of datos">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <img src="{{ dato.cli_imag }}" alt="Nombre" class="w3-circle" style="height: 35px;width: 35px;border-radius: 100%;" /> {{dato.cli_nombre}}</a>
+
+                            <div class="dropdown-menu dropdown-menu-right ">
+                                <div class="dropdown-header noti-title">
+                                    <h6 class="text-overflow m-0">Bienvenid@!</h6>
+                                </div>
+                                <a routerLinkActive="active" [routerLink]="['/perfilU']" class="dropdown-item item-serv"><i
+                                    class="ni ni-single-02"></i><span>Perfil</span></a>
+                                <a routerLinkActive="active" [routerLink]="['/support-u']" class="dropdown-item item-serv"><i
+                                    class="ni ni-support-16"></i><span>Soporte</span></a>
+                                <div class="dropdown-divider"></div>
+                                <a href="" class="dropdown-item item-serv" (click)="SesionFin()"><i
+                                    class="ni ni-user-run"></i><span>Cerrar Sesion</span></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container"></div>
+        </div>
+    </div>
+
+    <div class="Centro animate-bottom">
+        <section class="text-center">
+            <div class="card" style="border: none; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.1);">
+                <div class="card-body card-serv">
+                    <div class="row" *ngFor="let dato of datos">
+                        <div class="col-md-12 mb-3">
+                            <section class="container text-center p-1">
+
+                                <div class="card" style="border: none; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.5);">
+                                    <div class="card-header">
+                                        <button style="float: right;" type="button" class="btn btn-primary"
+                                        routerLink="/Act-perfilU/{{dato.cliUid}}">Editar Perfil</button>
+                                    </div>
+                                    <div class="card-body" style="padding: 1rem;">
+                                        <div>
+                                            <img class="img-fluid" src="{{ dato.cli_imag }}" alt="Responsive image"
+                                                style="height:200px; width:200px; border-radius: 100%; border: solid .8px black;" />
+                                            <br>
+                                            <h4>{{dato.cli_nombre}} {{dato.cli_app}} {{dato.cli_apm}}</h4>
+                                            <h5>@{{dato.cli_usuario}}</h5>
+                                            <h6>{{dato.email}}</h6>
+                                        </div>
+                                        <hr style="margin-left: 100px; margin-right: 100px;">
+
+                                        <div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h6 style="text-align: right;">Nombre:</h6>
+                                                </div>
+                                                <div class="col" style=" padding-left: 0px;">
+                                                    <h6 style="text-align: left;"><strong> {{dato.cli_nombre}} {{dato.cli_app}} {{dato.cli_apm}}</strong>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h6 style="text-align: right;">Correo electronico:</h6>
+                                                </div>
+                                                <div class="col" style=" padding-left: 0px;">
+                                                    <h6 style="text-align: left;"><strong> {{dato.email}}</strong></h6>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h6 style="text-align: right;">Ultimo inicio de sesion:</h6>
+                                                </div>
+                                                <div class="col" style=" padding-left: 0px;">
+                                                    <h6 style="text-align: left;"><strong> {{dato.ufecha}}</strong></h6>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h6 style="text-align: right;">Creado:</h6>
+                                                </div>
+                                                <div class="col" style=" padding-left: 0px;">
+                                                    <h6 style="text-align: left;"><strong> {{dato.fecha}}</strong></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <h6 style="font-size: 10px; text-align:right">ID: {{dato.cliUid}}</h6>
+                                        </div>
+                                        <button style="float: left;" type="button" class="btn btn-danger"
+                                        data-toggle="modal" data-target="#ModalEliminar"
+                                            >Eliminar Perfil</button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div>
+        <div class="jumbotron jumbotron-fluid jumbotron-2">
+            <div class="">
+                <footer class="footer pt-4 pt-md-5 border-top">
+                    <div class="row" style="margin-right: 0; margin-left: 0;">
+                        <div class="col-12 col-md">
+                            <small class="d-block mb-3 text-muted footer-link">© 2020 Geometric Dimentional || Derechos
+                          reservados.</small>
+                        </div>
+                        <div class="col-6 col-md">
+                            <h5>Informacion</h5>
+                            <ul class="list-unstyled text-small">
+                                <li>
+                                    <a class="text-muted footer-link" href="" data-toggle="modal" data-target="#conocenos">Conocenos</a>
+                                </li>
+                                <li>
+                                    <a class="text-muted footer-link" href="" data-toggle="modal" data-target="#ubicacion">Ubicacion</a>
+                                </li>
+                                <li>
+                                    <a class="text-muted footer-link" href="" data-toggle="modal" data-target="#exampleModalCenter">Terminos
+                                  y condiciones</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngFor="let dato of datos" class="modal fade" id="ModalEliminar" tabindex="-1" role="dialog" aria-labelledby="ModalEliminarLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalEliminarLabel">Hola <strong> {{dato.cli_nombre}}</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h5>Una ves eliminada la cuenta no podra recuperarla</h5>
+                    <h5>y todos sus datos se perderan.</h5>
+                    <div style="float: right;">
+                        <h5><strong>¿Desea eliminar su cuenta?</strong></h5>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="deletePerfil(dato.cliUid)">Eliminar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONOCENOS -->
+<div class="modal fade bd-example-modal-lg" id="conocenos" tabindex="-1" role="dialog" aria-labelledby="conocenosTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Conocenos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 500px; width: 100%; overflow-y: auto;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet. Mauris nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque posuere, varius odio quis, varius quam. Cras lacinia
+                sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur justo. Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante ultrices tincidunt. Morbi placerat ornare
+                nibh in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus faucibus, non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam sodales
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- UBICACION -->
+<div class="modal fade bd-example-modal-lg" id="ubicacion" tabindex="-1" role="dialog" aria-labelledby="ubicacionTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ubicacion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 500px; width: 100%; overflow-y: auto;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet. Mauris nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque posuere, varius odio quis, varius quam. Cras lacinia
+                sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur justo. Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante ultrices tincidunt. Morbi placerat ornare
+                nibh in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus faucibus, non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam sodales
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- TERMINOS Y CONDICIONES -->
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Terminos y condiciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 500px; width: 100%; overflow-y: auto;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet. Mauris nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque posuere, varius odio quis, varius quam. Cras lacinia
+                sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur justo. Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante ultrices tincidunt. Morbi placerat ornare
+                nibh in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus faucibus, non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam sodales ipsum suscipit, facilisis
+                accumsan leo efficitur. Etiam vestibulum maximus sollicitudin. Phasellus pulvinar diam non enim tempus efficitur a id tortor. Aliquam vel consectetur tortor. Praesent fringilla gravida lacus in faucibus. Vestibulum a velit volutpat, vehicula
+                mauris at, scelerisque purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet. Mauris nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque posuere,
+                varius odio quis, varius quam. Cras lacinia sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur justo. Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed
+                ante ultrices tincidunt. Morbi placerat ornare nibh in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus faucibus, non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus
+                dapibus quam sodales ipsum suscipit, facilisis accumsan leo efficitur. Etiam vestibulum maximus sollicitudin. Phasellus pulvinar diam non enim tempus efficitur a id tortor. Aliquam vel consectetur tortor. Praesent fringilla gravida lacus
+                in faucibus. Vestibulum a velit volutpat, vehicula mauris at, scelerisque purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet. Mauris nec rutrum nunc. Pellentesque sit amet dui dolor.
+                Proin vel feugiat libero. Vestibulum et neque posuere, varius odio quis, varius quam. Cras lacinia sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur justo. Proin sapien eros, facilisis et interdum
+                in, elementum at elit. Mauris porttitor justo sed ante ultrices tincidunt. Morbi placerat ornare nibh in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus faucibus, non venenatis purus tincidunt.
+                Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam sodales ipsum suscipit, facilisis accumsan leo efficitur. Etiam vestibulum maximus sollicitudin. Phasellus pulvinar diam non enim tempus efficitur a id tortor. Aliquam vel
+                consectetur tortor. Praesent fringilla gravida lacus in faucibus. Vestibulum a velit volutpat, vehicula mauris at, scelerisque purus.
+            </div>
+        </div>
+    </div>
+</div>

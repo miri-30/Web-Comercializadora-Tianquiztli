@@ -1,0 +1,155 @@
+/* NAV AND FOOTER */
+
+.navbar {
+    /* background: rgb(239, 184, 16); */
+    background: linear-gradient(90deg, rgba(255, 128, 0, 0.8) 0%, rgba(209, 106, 12, 0.8) 50%, rgba(164, 84, 17, 0.8) 100%);
+}
+
+.navbar-brand {
+    font-size: 25px;
+    font-family: "Roboto", sans-serif;
+    color: black !important;
+}
+
+.navbar-toggler {
+    border: none !important;
+    outline: none !important;
+}
+
+.navbar-toggler i {
+    color: black;
+}
+
+.navbar-nav .nav-item .nav-link {
+    border: none !important;
+    outline: none !important;
+    color: black !important;
+    font-family: "Roboto", sans-serif;
+    cursor: pointer;
+}
+
+.jumbotron {
+    background-image: url("https://source.unsplash.com/random/2300×2100/?tech");
+    background-size: cover;
+    height: 200px;
+    position: relative;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.jumbotron-2 {
+    background-image: url("https://source.unsplash.com/random/2300×2100/?service");
+    background-size: cover;
+    height: 168px;
+    position: relative;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.item-serv:hover {
+    color: rgb(165, 75, 1);
+}
+
+
+/* dekstop */
+
+@media (min-width: 1992px) {
+    .navbar {
+        background: linear-gradient(90deg, rgba(255, 128, 0, 0.8) 0%, rgba(209, 106, 12, 0.8) 50%, rgba(164, 84, 17, 0.8) 100%);
+    }
+    .brand .navbar-brand {
+        font-size: 32px;
+        border: none !important;
+        outline: none !important;
+        font-family: "Roboto", sans-serif;
+        color: #fff !important;
+    }
+    .navbar-nav .nav-item .nav-link {
+        color: white !important;
+    }
+    .nav-link {
+        margin-left: 30px;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+    .nav-link::after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 0;
+        transition: width 0.3s;
+    }
+    .nav-link:hover::after {
+        width: 50%;
+        transition: width 0.3s;
+    }
+}
+
+.footer {
+    background: linear-gradient(90deg, rgba(153, 118, 25, 0.8) 0%, rgba(126, 98, 24, 0.8) 50%, rgba(100, 78, 23, 0.8) 100%);
+    margin-bottom: 0;
+    color: #fff !important;
+}
+
+.footer-link {
+    color: #fff !important;
+}
+
+
+/* @media (min-width: 768px) {
+.footer {
+background: transparent;
+margin-bottom: 0!important ;
+}
+} */
+
+@media (min-width: 1992px) {
+    .footer {
+        background: linear-gradient(90deg, rgba(153, 118, 25, 0.8) 0%, rgba(126, 98, 24, 0.8) 50%, rgba(100, 78, 23, 0.8) 100%);
+        margin-bottom: 0 !important;
+    }
+}
+
+.hr-serv {
+    border-top: 3px solid rgb(165, 75, 1);
+}
+
+.card-serv {
+    padding: 1rem;
+    padding-bottom: 1px;
+}
+
+.animate-top {
+    position: relative;
+    animation: animatetop 1s
+}
+
+.animate-right {
+    position: relative;
+    animation: animateright 0.4s
+}
+
+.animate-bottom {
+    position: relative;
+    animation: animatebottom 1s
+}
+
+.animate-left {
+    position: relative;
+    animation: animateleft 0.4s
+}
+
+.boton-serv {
+    background: rgb(185, 185, 185);
+    border: none;
+}
+
+.boton-serv:hover {
+    background: rgb(255, 238, 0);
+    border: none;
+}
+
+.card-box-shadow {
+    border: none;
+    box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.5);
+}

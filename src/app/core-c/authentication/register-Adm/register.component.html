@@ -1,0 +1,317 @@
+<!-- Contenedor general -->
+<div class="displayTable">
+    <div class="Navegador">
+        <nav class="navbar navbar-expand-md fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#" style="font-size: 18px;">
+                    <img src="./../../../../assets/css/LOGO TIANGUIZTLI.png" alt="Nombre" class="w3-circle"
+                        style="height: 50px;width:50px;" /> Comercializadora Tianguiztli
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span>
+                        <i class="fas fa-bars"></i>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item" style="align-self: center;">
+                            <a class="nav-link header-menu-tab" (click)="goBack()">Volver</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <section class="container text-center p-1">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <section class="container text-center p-1">
+                            <div class="" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <h4> Registro Administrador</h4>
+                                        <p>Registro oculto.</p>
+                                        <hr>
+                                        <div class="card-body" style="padding: 0px;">
+                                            <form [formGroup]="registerForm">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                                        <div class="form-group">
+                                                            <div class="text-center">
+                                                                <img [src]="imgSrc" width="350px" height="350px"
+                                                                    (click)="fileUploader.click()">
+                                                            </div>
+                                                            <p *ngIf="adm_img.touched && adm_img.invalid" class="error">
+                                                                <sup>*</sup>Por favor ingrese una imagen
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="form-group" hidden>
+                                                            <label>Select file to upload</label>
+                                                            <input type="file" accept="image/*" class="form-control"
+                                                                #fileUploader formControlName="adm_img"
+                                                                (change)="showPreview($event)">
+                                                        </div>
+
+                                                        <div class="form-group mb-3">
+                                                            <label>Nombre</label>
+                                                            <input type="text" class="form-control"
+                                                                formControlName="adm_nombre" required />
+                                                            <p *ngIf="adm_nombre.touched && adm_nombre.invalid"
+                                                                class="error">
+                                                                <sup>*</sup>Por
+                                                                favor ingrese el nombre
+                                                            </p>
+                                                            <p *ngIf="adm_nombre.errors?.minlength" class="error">
+                                                                <sup>*</sup>
+                                                                El nombre no debe tener menos de 3 caracteres.
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="form-group mb-3">
+                                                            <label>Email</label>
+                                                            <input type="email" class="form-control" id="email"
+                                                                formControlName="email" required />
+                                                            <p *ngIf="email.touched && email.invalid" class="error">
+                                                                <sup>*</sup>
+                                                                Por favor ingrese el correo electrónico.</p>
+                                                            <p *ngIf="email.errors?.pattern" class="error">
+                                                                <sup>*</sup>Por favor
+                                                                ingrese el correo electrónico valido</p>
+                                                        </div>
+
+                                                        <div class="form-group mb-3">
+                                                            <label>Contraseña</label>
+                                                            <input type="password" class="form-control" id="password"
+                                                                formControlName="password" required />
+                                                            <p *ngIf="password.touched && password.invalid"
+                                                                class="error">
+                                                                <sup>*</sup>Por
+                                                                favor ingrese una contraseña</p>
+                                                            <p *ngIf="password.errors?.minlength" class="error">
+                                                                <sup>*</sup>
+                                                                La contraseña no debe tener menos de 8 caracteres.
+                                                            </p>
+                                                            <p *ngIf="password.errors?.maxlength" class="error">
+                                                                <sup>*</sup>
+                                                                La contraseña no debe tener mas de 12 caracteres.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <button type="button" class="btn customButton"
+                                                        (click)="ResetForm()">
+                                                        Reset
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <button class="btn customButton" [disabled]="registerForm.invalid"
+                                                        (click)="createUser(registerModal)">Registrarme</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div>
+        <footer class="footer pt-4 pt-md-5 border-top">
+            <div class="row" style="margin-right: 0; margin-left: 0;">
+                <div class="col-12 col-md">
+                    <small class="d-block mb-3 text-muted footer-link">© 2020 Geometric Dimentional || Derechos
+                        reservados.</small>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Informacion</h5>
+                    <ul class="list-unstyled text-small">
+                        <li>
+                            <a class="text-muted footer-link" href="" data-toggle="modal"
+                                data-target="#conocenos">Conocenos</a>
+                        </li>
+                        <li>
+                            <a class="text-muted footer-link" href="" data-toggle="modal"
+                                data-target="#ubicacion">Ubicacion</a>
+                        </li>
+                        <li>
+                            <a class="text-muted footer-link" href="" data-toggle="modal"
+                                data-target="#exampleModalCenter">Terminos
+                                y condiciones</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<!-- CONOCENOS -->
+<div class="modal fade bd-example-modal-lg" id="conocenos" tabindex="-1" role="dialog" aria-labelledby="conocenosTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Conocenos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 500px; width: 100%; overflow-y: auto;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+                Mauris
+                nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+                posuere,
+                varius odio quis, varius quam. Cras lacinia
+                sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+                justo.
+                Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+                ultrices
+                tincidunt. Morbi placerat ornare nibh
+                in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+                faucibus,
+                non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+                sodales
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- UBICACION -->
+<div class="modal fade bd-example-modal-lg" id="ubicacion" tabindex="-1" role="dialog" aria-labelledby="ubicacionTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ubicacion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 500px; width: 100%; overflow-y: auto;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+                Mauris
+                nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+                posuere,
+                varius odio quis, varius quam. Cras lacinia
+                sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+                justo.
+                Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+                ultrices
+                tincidunt. Morbi placerat ornare nibh
+                in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+                faucibus,
+                non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+                sodales
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- TERMINOS Y CONDICIONES -->
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Terminos y condiciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 500px; width: 100%; overflow-y: auto;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+                Mauris
+                nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+                posuere,
+                varius odio quis, varius quam. Cras lacinia
+                sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+                justo.
+                Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+                ultrices
+                tincidunt. Morbi placerat ornare nibh
+                in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+                faucibus,
+                non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+                sodales
+                ipsum suscipit, facilisis accumsan
+                leo efficitur. Etiam vestibulum maximus sollicitudin. Phasellus pulvinar diam non enim tempus
+                efficitur
+                a id tortor. Aliquam vel consectetur tortor. Praesent fringilla gravida lacus in faucibus.
+                Vestibulum a
+                velit volutpat, vehicula mauris at,
+                scelerisque purus.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+                Mauris
+                nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+                posuere,
+                varius odio quis, varius quam. Cras lacinia
+                sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+                justo.
+                Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+                ultrices
+                tincidunt. Morbi placerat ornare nibh
+                in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+                faucibus,
+                non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+                sodales
+                ipsum suscipit, facilisis accumsan
+                leo efficitur. Etiam vestibulum maximus sollicitudin. Phasellus pulvinar diam non enim tempus
+                efficitur
+                a id tortor. Aliquam vel consectetur tortor. Praesent fringilla gravida lacus in faucibus.
+                Vestibulum a
+                velit volutpat, vehicula mauris at,
+                scelerisque purus.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique et magna nec imperdiet.
+                Mauris
+                nec rutrum nunc. Pellentesque sit amet dui dolor. Proin vel feugiat libero. Vestibulum et neque
+                posuere,
+                varius odio quis, varius quam. Cras lacinia
+                sapien a leo tincidunt tincidunt. Integer a nunc non nisl tempus faucibus. Aliquam at efficitur
+                justo.
+                Proin sapien eros, facilisis et interdum in, elementum at elit. Mauris porttitor justo sed ante
+                ultrices
+                tincidunt. Morbi placerat ornare nibh
+                in consectetur. Pellentesque sollicitudin vulputate consectetur. Ut vehicula ex pretium lacus
+                faucibus,
+                non venenatis purus tincidunt. Praesent efficitur vitae ex quis aliquam. Phasellus dapibus quam
+                sodales
+                ipsum suscipit, facilisis accumsan
+                leo efficitur. Etiam vestibulum maximus sollicitudin. Phasellus pulvinar diam non enim tempus
+                efficitur
+                a id tortor. Aliquam vel consectetur tortor. Praesent fringilla gravida lacus in faucibus.
+                Vestibulum a
+                velit volutpat, vehicula mauris at,
+                scelerisque purus.
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contenedor general -->
+
+<!-- Modals -->
+<ng-template #registerModal>
+    <div class="modal-body">
+        <h2 class="text-center text-dark mt-4">{{modalData.modalTitle}}</h2>
+        <img class="registerIcon img-fluid" alt="Responsive image" src="{{modalData.modalIcon}}">
+        <p class="text-center mt-3">{{modalData.modalDescription}}</p>
+        <button class="btn btn-block btn-lg btn-danger text-center  mt-2 mb-2"
+            (click)="continuousFunction()">Aceptar</button>
+    </div>
+</ng-template>
+<!-- Modals -->
